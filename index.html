@@ -62,6 +62,63 @@
       border-radius: 4px;
     }
 
+    /* ─── TICKER BANNER ─────────────────────────────── */
+    .ticker {
+      position: fixed;
+      top: 68px;
+      inset-inline: 0;
+      z-index: 49;
+      background: var(--brand);
+      height: 36px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: ticker-scroll 30s linear infinite;
+      will-change: transform;
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      padding-right: 64px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .ticker-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.55);
+      flex-shrink: 0;
+    }
+
+    @keyframes ticker-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track {
+        animation: none;
+      }
+    }
+
     /* ─── NAV ────────────────────────────────────────── */
     nav {
       position: fixed;
@@ -208,7 +265,7 @@
 
     /* ─── HERO ───────────────────────────────────────── */
     .hero {
-      padding: 148px 24px 96px;
+      padding: 184px 24px 96px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -304,54 +361,179 @@
       background: var(--bg-warm);
     }
 
-    .features-grid {
+    .feature-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 96px;
+    }
+
+    .feature-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 80px;
     }
 
-    .feature-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 36px 32px;
-      transition: box-shadow var(--ease), transform var(--ease), border-color var(--ease);
+    .feature-row--flip .feature-row-media {
+      order: -1;
     }
 
-    .feature-card:hover {
-      box-shadow: 0 10px 40px rgba(232, 160, 32, 0.13);
-      transform: translateY(-4px);
-      border-color: var(--border-mid);
+    /* Centered interstitial row — for non-screen features */
+    .feature-row--center {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .feature-row--center .feature-row-copy p {
+      max-width: none;
+      margin: 0 auto;
+    }
+
+    .feature-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .feature-row--center .feature-heading {
+      justify-content: center;
+    }
+
+    .feature-row--right .feature-row-copy {
+      text-align: right;
+    }
+
+    .feature-row--right .feature-heading {
+      justify-content: flex-end;
+    }
+
+    .feature-row--right .feature-row-copy p {
+      margin-left: auto;
     }
 
     .feature-icon {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       background: var(--brand-light);
       border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 22px;
+      flex-shrink: 0;
       color: var(--brand);
     }
 
     .feature-icon svg {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
     }
 
-    .feature-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 10px;
+    .feature-row-copy h3 {
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 0;
     }
 
-    .feature-card p {
-      font-size: 15px;
-      line-height: 1.7;
+    .feature-row-copy p {
+      font-size: 17px;
+      line-height: 1.72;
       color: var(--text-sec);
+      max-width: 400px;
+    }
+
+    /* ─── PHONE MOCKUP ───────────────────────────────── */
+    .feature-row-media {
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone-showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .phone-frame {
+      width: 248px;
+      background: #14100A;
+      border-radius: 48px;
+      padding: 13px 11px 11px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.07),
+        0 0 0 9px #0C0804,
+        0 0 0 10px rgba(255, 255, 255, 0.05),
+        0 40px 80px rgba(0, 0, 0, 0.28),
+        0 8px 20px rgba(0, 0, 0, 0.18);
+      position: relative;
+    }
+
+    /* Dynamic island pill */
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88px;
+      height: 26px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 2;
+    }
+
+    .phone-screen {
+      border-radius: 37px;
+      overflow: hidden;
+      position: relative;
+      background: #000;
+      aspect-ratio: 390 / 844;
+    }
+
+    .phone-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0;
+      transition: opacity 500ms ease;
+      display: block;
+    }
+
+    .phone-slide.active {
+      opacity: 1;
+    }
+
+    .phone-dots {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .phone-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: none;
+      background: var(--border-mid);
+      cursor: pointer;
+      padding: 0;
+      transition: background var(--ease), transform var(--ease), width var(--ease);
+      flex-shrink: 0;
+    }
+
+    .phone-dot.active {
+      background: var(--brand);
+      width: 20px;
+      border-radius: 4px;
     }
 
     /* ─── HOW IT WORKS ───────────────────────────────── */
@@ -527,23 +709,162 @@
       .btn-arrow,
       .btn,
       .btn::after,
-      .feature-card {
+      .phone-slide,
+      .phone-dot,
+      .bar-fill {
         transition: none !important;
+      }
+
+      .bar-fill {
+        width: var(--pct) !important;
       }
 
       .btn:active {
         transform: none !important;
       }
+    }
 
-      .feature-card:hover {
-        transform: none !important;
-      }
+    /* ─── RESEARCH ───────────────────────────────────── */
+    .research-section {
+      background: var(--bg);
+    }
+
+    .research-card {
+      max-width: 660px;
+      margin: 0 auto;
+      background: var(--bg-warm);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 40px;
+    }
+
+    .research-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .research-count {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand-deeper);
+      background: var(--brand-light);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+    }
+
+    .research-note {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      column-gap: 12px;
+      row-gap: 7px;
+      margin-bottom: 20px;
+    }
+
+    .bar-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .bar-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      align-self: end;
+    }
+
+    .bar-pct {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      align-self: end;
+      text-align: right;
+    }
+
+    .bar-track {
+      grid-column: 1 / -1;
+      height: 8px;
+      background: var(--border);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0;
+      background: var(--brand);
+      border-radius: inherit;
+      transition: width 900ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .research-card.is-visible .bar-fill {
+      width: var(--pct);
+    }
+
+    .bar-row:nth-child(1) .bar-fill {
+      transition-delay: 0ms;
+    }
+
+    .bar-row:nth-child(2) .bar-fill {
+      transition-delay: 100ms;
+    }
+
+    .bar-row:nth-child(3) .bar-fill {
+      transition-delay: 200ms;
+    }
+
+    .bar-row:nth-child(4) .bar-fill {
+      transition-delay: 300ms;
+    }
+
+    .bar-row:nth-child(5) .bar-fill {
+      transition-delay: 400ms;
     }
 
     /* ─── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 900px) {
-      .features-grid {
-        grid-template-columns: 1fr 1fr;
+      .feature-row {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      /* Override right-align on mobile — everything centers */
+      .feature-row--right .feature-row-copy {
+        text-align: center;
+      }
+
+      .feature-row--right .feature-heading {
+        justify-content: center;
+      }
+
+      .feature-row--right .feature-row-copy p {
+        margin-left: 0;
+      }
+
+      .feature-heading {
+        justify-content: center;
+      }
+
+      .feature-row--flip .feature-row-media {
+        order: 0;
+      }
+
+      .feature-row-copy p {
+        max-width: none;
+        margin: 0 auto;
+      }
+
+      .research-card {
+        padding: 28px 24px;
       }
 
       .steps-track {
@@ -585,10 +906,6 @@
         display: none;
       }
 
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
       .footer-inner {
         flex-direction: column;
         text-align: center;
@@ -604,6 +921,7 @@
     <img src="logo.png" alt="Bondli" class="nav-logo">
     <ul class="nav-links" role="list">
       <li><a href="#features">Features</a></li>
+      <li><a href="#research">Research</a></li>
     </ul>
     <div class="nav-actions">
       <a href="mailto:hello@bondli.chat?subject=My%20Story" class="btn btn-ghost-nav"
@@ -620,6 +938,29 @@
       </a>
     </div>
   </nav>
+
+  <!-- ─── TICKER ──────────────────────────────────────── -->
+  <div class="ticker" role="marquee" aria-label="We pitch next week. Sign and share the petition. Push for change.">
+    <!-- Duplicated so the loop is seamless at -50% -->
+    <div class="ticker-track" aria-hidden="true">
+      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
+          class="ticker-dot"></span>Push for change</span>
+      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
+          class="ticker-dot"></span>Push for change</span>
+      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
+          class="ticker-dot"></span>Push for change</span>
+      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
+          class="ticker-dot"></span>Push for change</span>
+      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
+          class="ticker-dot"></span>Push for change</span>
+      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
+          class="ticker-dot"></span>Push for change</span>
+      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
+          class="ticker-dot"></span>Push for change</span>
+      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
+          class="ticker-dot"></span>Push for change</span>
+    </div>
+  </div>
 
   <!-- ─── HERO ──────────────────────────────────────── -->
   <section class="hero" aria-labelledby="hero-heading">
@@ -654,44 +995,93 @@
       <h2 class="section-title" id="features-heading">Built for the people...</h2>
       <p class="section-sub">Every feature is crafted to solve reported pains from current, antiquated systems.</p>
 
-      <div class="features-grid" role="list">
+      <div class="feature-rows">
 
-        <article class="feature-card" role="listitem">
-          <div class="feature-icon" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>
+        <!-- Row 1: copy left, phone right — full app flow -->
+        <div class="feature-row">
+          <div class="feature-row-copy">
+            <div class="feature-heading">
+              <div class="feature-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+              </div>
+              <h3>Fast</h3>
+            </div>
+            <p>Familiar messaging technology with real-time notifications. Your inbox, contacts, and conversations —
+              always up to date.</p>
           </div>
-          <h3>Fast</h3>
-          <p>Familiar messaging technology with real-time notifications.</p>
-        </article>
+          <div class="feature-row-media">
+            <div class="phone-showcase" role="region" aria-label="Messaging screenshots">
+              <div class="phone-frame">
+                <div class="phone-screen">
+                  <img src="screens/screen1.png" class="phone-slide active" alt="Messages inbox">
+                  <img src="screens/screen4.png" class="phone-slide" alt="Live chat conversation">
+                  <img src="screens/screen2.png" class="phone-slide" alt="Contacts list">
+                  <img src="screens/screen3.png" class="phone-slide" alt="Connection requests">
+                </div>
+              </div>
+              <div class="phone-dots" role="tablist" aria-label="Screenshot navigation">
+                <button class="phone-dot active" role="tab" aria-selected="true" aria-label="Screen 1"></button>
+                <button class="phone-dot" role="tab" aria-selected="false" aria-label="Screen 2"></button>
+                <button class="phone-dot" role="tab" aria-selected="false" aria-label="Screen 3"></button>
+                <button class="phone-dot" role="tab" aria-selected="false" aria-label="Screen 4"></button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <article class="feature-card" role="listitem">
-          <div class="feature-icon" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
+        <!-- Row 2: centered interstitial — no screenshot, infrastructure claim -->
+        <div class="feature-row feature-row--center">
+          <div class="feature-row-copy">
+            <div class="feature-heading">
+              <div class="feature-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <h3>Reliable</h3>
+            </div>
+            <p>Won't go down when you need it the most. Built for the moments that can't wait.</p>
           </div>
-          <h3>Reliable</h3>
-          <p>Won't go down when you need it the most.</p>
-        </article>
+        </div>
 
-        <article class="feature-card" role="listitem">
-          <div class="feature-icon" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-            </svg>
+        <!-- Row 3: phone left, copy right-aligned -->
+        <div class="feature-row feature-row--flip feature-row--right">
+          <div class="feature-row-copy">
+            <div class="feature-heading">
+              <div class="feature-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              <h3>AI-moderated</h3>
+            </div>
+            <p>Unbiased moderation with a privacy-first mindset. Every message reviewed with full context and confidence
+              scoring.</p>
           </div>
-          <h3>AI-moderated</h3>
-          <p>Unbiased moderation with privacy-first mindset.</p>
-        </article>
+          <div class="feature-row-media">
+            <div class="phone-showcase" role="region" aria-label="Moderation screenshots">
+              <div class="phone-frame">
+                <div class="phone-screen">
+                  <img src="screens/screen5.png" class="phone-slide active" alt="AI moderation queue">
+                  <img src="screens/screen6.png" class="phone-slide" alt="Message review with AI assessment">
+                </div>
+              </div>
+              <div class="phone-dots" role="tablist" aria-label="Screenshot navigation">
+                <button class="phone-dot active" role="tab" aria-selected="true" aria-label="Screen 1"></button>
+                <button class="phone-dot" role="tab" aria-selected="false" aria-label="Screen 2"></button>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -749,6 +1139,60 @@
     </div>
   </section> -->
 
+  <!-- ─── RESEARCH ────────────────────────────────────── -->
+  <section class="research-section" id="research" aria-labelledby="research-heading">
+    <div class="container">
+      <h2 class="section-title" id="research-heading">What people need</h2>
+
+      <div class="research-card" role="region" aria-label="Petition response data">
+        <div class="bar-row">
+          <span class="bar-label">Lower costs</span>
+          <span class="bar-pct">95%</span>
+          <div class="bar-track" role="meter" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"
+            aria-label="Lower costs: 95%">
+            <div class="bar-fill" style="--pct: 95%"></div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <span class="bar-label">Better reliability</span>
+          <span class="bar-pct">88%</span>
+          <div class="bar-track" role="meter" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"
+            aria-label="Better reliability: 88%">
+            <div class="bar-fill" style="--pct: 88%"></div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <span class="bar-label">Better privacy &amp; moderation</span>
+          <span class="bar-pct">61%</span>
+          <div class="bar-track" role="meter" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"
+            aria-label="Better privacy: 61%">
+            <div class="bar-fill" style="--pct: 61%"></div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <span class="bar-label">Centralized system</span>
+          <span class="bar-pct">49%</span>
+          <div class="bar-track" role="meter" aria-valuenow="49" aria-valuemin="0" aria-valuemax="100"
+            aria-label="Centralized system: 49%">
+            <div class="bar-fill" style="--pct: 49%"></div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <span class="bar-label">Fast background checks</span>
+          <span class="bar-pct">39%</span>
+          <div class="bar-track" role="meter" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"
+            aria-label="Fast background checks: 39%">
+            <div class="bar-fill" style="--pct: 39%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── MANIFESTO ─────────────────────────────────── -->
   <section class="manifesto-section" aria-label="Bondli manifesto">
     <div class="container">
@@ -787,6 +1231,70 @@
       <a href="mailto:hello@bondli.chat">hello@bondli.chat</a>
     </div>
   </footer>
+
+  <script>
+    // ─── Research bars: fill on scroll into view ──────
+    (function () {
+      var card = document.querySelector('.research-card');
+      if (!card) return;
+      var observer = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          card.classList.add('is-visible');
+          observer.disconnect();
+        }
+      }, { threshold: 0.3 });
+      observer.observe(card);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      document.querySelectorAll('.phone-showcase').forEach(function (showcase) {
+        const slides = showcase.querySelectorAll('.phone-slide');
+        const dots = showcase.querySelectorAll('.phone-dot');
+        let current = 0;
+        let timer = null;
+
+        function goTo(index) {
+          slides[current].classList.remove('active');
+          dots[current].classList.remove('active');
+          dots[current].setAttribute('aria-selected', 'false');
+          current = index;
+          slides[current].classList.add('active');
+          dots[current].classList.add('active');
+          dots[current].setAttribute('aria-selected', 'true');
+        }
+
+        function advance() {
+          goTo((current + 1) % slides.length);
+        }
+
+        // Only auto-play when user is OK with motion
+        if (!reducedMotion) {
+          timer = setInterval(advance, 3200);
+        }
+
+        // Manual dot navigation resets the timer
+        dots.forEach(function (dot, i) {
+          dot.addEventListener('click', function () {
+            clearInterval(timer);
+            goTo(i);
+            if (!reducedMotion) {
+              timer = setInterval(advance, 3200);
+            }
+          });
+        });
+
+        // Pause on hover — avoids advancing mid-inspection
+        showcase.addEventListener('mouseenter', function () { clearInterval(timer); });
+        showcase.addEventListener('mouseleave', function () {
+          if (!reducedMotion) timer = setInterval(advance, 3200);
+        });
+      });
+    })();
+  </script>
 
 </body>
 
