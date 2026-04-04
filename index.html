@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bondli — Messages that mean something</title>
+  <title>Bondli — Stay connected with your loved one</title>
   <meta name="description"
     content="Bondli is a messaging platform built for people with stories to tell. Real conversations. Genuine connections.">
-  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -418,6 +418,20 @@
       text-align: center;
     }
 
+    .manifesto-initial-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .manifesto-initial {
+      height: 120px;
+      width: auto;
+      display: block;
+      border-radius: 28px;
+      box-shadow: 0 0 0 8px rgba(232, 160, 32, 0.18);
+    }
+
     .manifesto-section blockquote {
       font-size: clamp(24px, 3.5vw, 42px);
       font-weight: 700;
@@ -637,7 +651,7 @@
   <section class="features-section" id="features" aria-labelledby="features-heading">
     <div class="container">
       <p class="section-label" aria-hidden="true">What makes Bondli different</p>
-      <h2 class="section-title" id="features-heading">Built "for the people".</h2>
+      <h2 class="section-title" id="features-heading">Built for the people...</h2>
       <p class="section-sub">Every feature is crafted to solve reported pains from current, antiquated systems.</p>
 
       <div class="features-grid" role="list">
@@ -738,6 +752,9 @@
   <!-- ─── MANIFESTO ─────────────────────────────────── -->
   <section class="manifesto-section" aria-label="Bondli manifesto">
     <div class="container">
+      <div class="manifesto-initial-wrap">
+        <img src="logo.svg" alt="" class="manifesto-initial" aria-hidden="true">
+      </div>
       <blockquote>
         "Built <em>for the people</em> on<br>
         both sides of the wall."
