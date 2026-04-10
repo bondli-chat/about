@@ -839,6 +839,71 @@
       transition-delay: 400ms;
     }
 
+    /* ─── REDDIT CAROUSEL ───────────────────────────── */
+    .reddit-carousel-wrap {
+      margin-top: 48px;
+      background: var(--brand);
+      padding: 40px 0 44px;
+      overflow: hidden;
+      /* fade left + right edges over the amber band */
+      -webkit-mask-image: linear-gradient(to right,
+          transparent 0%,
+          #000 72px,
+          #000 calc(100% - 72px),
+          transparent 100%);
+      mask-image: linear-gradient(to right,
+          transparent 0%,
+          #000 72px,
+          #000 calc(100% - 72px),
+          transparent 100%);
+    }
+
+    .reddit-carousel-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.75);
+      margin: 0 0 24px;
+      padding: 0 80px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .reddit-carousel-label svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      color: #fff;
+    }
+
+    .reddit-track {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+    }
+
+    .reddit-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .reddit-track.row-2 {
+      margin-top: 14px;
+    }
+
+    .reddit-card {
+      flex: 0 0 340px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+      min-height: 316px;
+    }
+
     /* ─── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 900px) {
       .feature-row {
@@ -1255,7 +1320,62 @@
         </div>
       </div>
     </div>
+
+    <!-- Reddit carousel — full-bleed amber band -->
+    <div class="reddit-carousel-wrap" aria-label="Real voices from the community">
+      <p class="reddit-carousel-label">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z" />
+        </svg>
+        Real voices from the community
+      </p>
+      <div class="reddit-track row-1" id="reddit-row-1"></div>
+      <div class="reddit-track row-2" id="reddit-row-2"></div>
+    </div>
   </section>
+
+  <!--
+    ════════════════════════════════════════════
+    REDDIT THREADS — paste full embed codes here.
+    The <script> tags are safe to leave in.
+    First half → row 1 (scrolls left)
+    Second half → row 2 (scrolls right)
+    ════════════════════════════════════════════
+  -->
+  <template id="reddit-source">
+    <blockquote class="reddit-embed-bq" style="height:316px" data-embed-theme="dark" data-embed-showusername="false"
+      data-embed-height="316">
+      <a href="https://www.reddit.com/r/PrisonWives/comments/1sf3z3q/how_long_does_it_take_for_my_message_to_send/">How
+        long does it take for my message to send?</a><br> by
+      <a href="https://www.reddit.com/user/blatina_bbxo/">u/blatina_bbxo</a> in
+      <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+    </blockquote>
+    <script async="" src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>
+    <blockquote class="reddit-embed-bq" style="height:316px" data-embed-theme="dark" data-embed-showusername="false"
+      data-embed-height="316">
+      <a href="https://www.reddit.com/r/PrisonWives/comments/1s4iia4/is_securus_getting_worse_for_everyone_else/">Is
+        Securus getting worse for everyone else? (Multiple rejection/Delays)</a><br> by
+      <a href="https://www.reddit.com/user/Think-Grass-3886/">u/Think-Grass-3886</a> in
+      <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+    </blockquote>
+    <script async="" src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>
+    <blockquote class="reddit-embed-bq" style="height:316px" data-embed-theme="dark" data-embed-showusername="false"
+      data-embed-height="316">
+      <a href="https://www.reddit.com/r/PrisonWives/comments/1sarr13/please_please_help/">Please please help</a><br> by
+      <a href="https://www.reddit.com/user/Distinct-Bluejay3113/">u/Distinct-Bluejay3113</a> in
+      <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+    </blockquote>
+    <script async="" src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>
+    <blockquote class="reddit-embed-bq" style="height:316px" data-embed-theme="dark" data-embed-showusername="false"
+      data-embed-height="316">
+      <a href="https://www.reddit.com/r/PrisonWives/comments/1saqrc1/is_gtl_still_working_today_at_satf/">Is GTL still
+        working today at SATF</a><br> by
+      <a href="https://www.reddit.com/user/Standard-Cost-6197/">u/Standard-Cost-6197</a> in
+      <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+    </blockquote>
+    <script async="" src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>
+  </template>
 
   <!-- ─── MANIFESTO ─────────────────────────────────── -->
   <section class="manifesto-section" aria-label="Bondli manifesto">
@@ -1357,6 +1477,95 @@
           if (!reducedMotion) timer = setInterval(advance, 3200);
         });
       });
+    })();
+  </script>
+
+  <script>
+    /* ── Reddit carousel ── */
+    (function () {
+      var row1 = document.getElementById('reddit-row-1');
+      var row2 = document.getElementById('reddit-row-2');
+      if (!row1 || !row2) return;
+
+      var tmpl = document.getElementById('reddit-source');
+      if (!tmpl) return;
+      var blockquotes = Array.from(tmpl.content.querySelectorAll('blockquote.reddit-embed-bq'));
+      if (!blockquotes.length) return;
+
+      var mid = Math.ceil(blockquotes.length / 2);
+      var groups = [blockquotes.slice(0, mid), blockquotes.slice(mid)];
+      var tracks = [row1, row2];
+
+      // Each "half" of the track must be wider than the viewport for the
+      // seamless loop reset to be invisible. Card = 340px + 14px gap = 354px.
+      var CARD_W = 354;
+
+      groups.forEach(function (list, i) {
+        if (!list.length) return;
+        // how many times to repeat so one set > 1.5× viewport
+        var reps = Math.max(2, Math.ceil((window.innerWidth * 1.5) / (list.length * CARD_W)));
+        var repeated = [];
+        for (var r = 0; r < reps * 2; r++) repeated = repeated.concat(list);
+
+        repeated.forEach(function (bq) {
+          var div = document.createElement('div');
+          div.className = 'reddit-card';
+          div.appendChild(bq.cloneNode(true));
+          tracks[i].appendChild(div);
+        });
+      });
+
+      // Load Reddit's embed script once after all cards are in the DOM
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://embed.reddit.com/widgets.js';
+      s.charset = 'UTF-8';
+      document.body.appendChild(s);
+
+      var SPEED = 0.6; // px per frame (~36px/s at 60fps)
+
+      function startScroll(el, direction) {
+        var paused = false;
+        var userScrolling = false;
+        var resumeTimer;
+
+        function resumeAfterDelay() {
+          clearTimeout(resumeTimer);
+          resumeTimer = setTimeout(function () { userScrolling = false; }, 1500);
+        }
+
+        el.addEventListener('mouseenter', function () { paused = true; });
+        el.addEventListener('mouseleave', function () { paused = false; });
+        el.addEventListener('wheel',      function () { userScrolling = true; resumeAfterDelay(); }, { passive: true });
+        el.addEventListener('touchstart', function () { userScrolling = true; }, { passive: true });
+        el.addEventListener('touchend',   resumeAfterDelay);
+
+        // wait one frame for layout so scrollWidth is accurate
+        requestAnimationFrame(function () {
+          var half = el.scrollWidth / 2;
+          // row-2 starts at the midpoint and scrolls backward
+          if (direction === 'right') el.scrollLeft = half;
+
+          function tick() {
+            if (!paused && !userScrolling) {
+              var h = el.scrollWidth / 2;
+              if (direction === 'left') {
+                el.scrollLeft += SPEED;
+                if (el.scrollLeft >= h) el.scrollLeft -= h;
+              } else {
+                el.scrollLeft -= SPEED;
+                if (el.scrollLeft <= 0) el.scrollLeft += h;
+              }
+            }
+            requestAnimationFrame(tick);
+          }
+
+          requestAnimationFrame(tick);
+        });
+      }
+
+      startScroll(row1, 'left');
+      startScroll(row2, 'right');
     })();
   </script>
 
