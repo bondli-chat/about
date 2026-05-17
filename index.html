@@ -62,63 +62,6 @@
       border-radius: 4px;
     }
 
-    /* ─── TICKER BANNER ─────────────────────────────── */
-    .ticker {
-      position: fixed;
-      top: 68px;
-      inset-inline: 0;
-      z-index: 49;
-      background: var(--brand);
-      height: 36px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .ticker-track {
-      display: flex;
-      gap: 0;
-      white-space: nowrap;
-      animation: ticker-scroll 30s linear infinite;
-      will-change: transform;
-    }
-
-    .ticker-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 20px;
-      padding-right: 64px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: #fff;
-      text-transform: uppercase;
-    }
-
-    .ticker-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.55);
-      flex-shrink: 0;
-    }
-
-    @keyframes ticker-scroll {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .ticker-track {
-        animation: none;
-      }
-    }
-
     /* ─── NAV ────────────────────────────────────────── */
     nav {
       position: fixed;
@@ -168,6 +111,80 @@
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+
+    /* ─── NAV DROPDOWN ──────────────────────────────── */
+    .nav-links li.has-dropdown {
+      position: relative;
+    }
+
+    .nav-links li.has-dropdown > span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-sec);
+      cursor: default;
+      transition: color var(--ease);
+    }
+
+    .nav-links li.has-dropdown:hover > span,
+    .nav-links li.has-dropdown:focus-within > span {
+      color: var(--text);
+    }
+
+    .nav-links li.has-dropdown > span svg {
+      width: 12px;
+      height: 12px;
+      transition: transform var(--ease);
+    }
+
+    .nav-links li.has-dropdown:hover > span svg,
+    .nav-links li.has-dropdown:focus-within > span svg {
+      transform: rotate(180deg);
+    }
+
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding-top: 10px;
+      z-index: 100;
+      min-width: 180px;
+      list-style: none;
+    }
+
+    .nav-dropdown-inner {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      padding: 6px;
+    }
+
+    .nav-links li.has-dropdown:hover .nav-dropdown,
+    .nav-links li.has-dropdown:focus-within .nav-dropdown {
+      display: block;
+    }
+
+    .nav-dropdown a {
+      display: block;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-sec);
+      text-decoration: none;
+      transition: background var(--ease), color var(--ease);
+      white-space: nowrap;
+    }
+
+    .nav-dropdown a:hover {
+      background: var(--bg-amber);
+      color: var(--text);
     }
 
     .btn-ghost-nav {
@@ -265,7 +282,7 @@
 
     /* ─── HERO ───────────────────────────────────────── */
     .hero {
-      padding: 184px 24px 96px;
+      padding: 148px 24px 96px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -724,6 +741,85 @@
       }
     }
 
+    /* ─── FOR FACILITIES ────────────────────────────── */
+    .facilities-section {
+      background: var(--bg-warm);
+    }
+
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 52px;
+    }
+
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+    }
+
+    .stat-card-num {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      color: var(--brand-dark);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .stat-card-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .stat-card-sub {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    .behavioral-callout {
+      border-left: 4px solid var(--brand);
+      background: var(--brand-light);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 28px 36px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .behavioral-callout p {
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 700;
+      color: var(--brand-deeper);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+    }
+
+    .behavioral-callout cite {
+      display: block;
+      margin-top: 10px;
+      font-size: 13px;
+      font-style: normal;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    @media (max-width: 900px) {
+      .facilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .facilities-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ─── RESEARCH ───────────────────────────────────── */
     .research-section {
       background: var(--bg);
@@ -995,7 +1091,19 @@
     <img src="logo.png" alt="Bondli" class="nav-logo">
     <ul class="nav-links" role="list">
       <li><a href="#features">Features</a></li>
-      <li><a href="#research">Research</a></li>
+      <li class="has-dropdown">
+        <span aria-haspopup="true">
+          Research
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </span>
+        <ul class="nav-dropdown" role="list">
+          <div class="nav-dropdown-inner">
+            <li><a href="#for-facilities">For Facilities</a></li>
+            <li><a href="#for-families">For Families</a></li>
+          </div>
+        </ul>
+      </li>
+      <li><a href="https://deck.bondli.chat" target="_blank" rel="noopener noreferrer">For Investors</a></li>
     </ul>
     <div class="nav-actions">
       <a href="mailto:hello@bondli.chat?subject=My%20Story" class="btn btn-ghost-nav"
@@ -1012,29 +1120,6 @@
       </a>
     </div>
   </nav>
-
-  <!-- ─── TICKER ──────────────────────────────────────── -->
-  <div class="ticker" role="marquee" aria-label="We pitch next week. Sign and share the petition. Push for change.">
-    <!-- Duplicated so the loop is seamless at -50% -->
-    <div class="ticker-track" aria-hidden="true">
-      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
-          class="ticker-dot"></span>Push for change</span>
-      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
-          class="ticker-dot"></span>Push for change</span>
-      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
-          class="ticker-dot"></span>Push for change</span>
-      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
-          class="ticker-dot"></span>Push for change</span>
-      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
-          class="ticker-dot"></span>Push for change</span>
-      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
-          class="ticker-dot"></span>Push for change</span>
-      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
-          class="ticker-dot"></span>Push for change</span>
-      <span class="ticker-item">We pitch next week<span class="ticker-dot"></span>Sign and share the petition<span
-          class="ticker-dot"></span>Push for change</span>
-    </div>
-  </div>
 
   <!-- ─── HERO ──────────────────────────────────────── -->
   <section class="hero" aria-labelledby="hero-heading">
@@ -1178,6 +1263,72 @@
     </div>
   </section>
 
+  <!-- ─── FOR FACILITIES ────────────────────────────── -->
+  <section class="facilities-section" id="for-facilities" aria-labelledby="facilities-heading">
+    <div class="container">
+      <p class="section-label" aria-hidden="true">For Facilities</p>
+      <h2 class="section-title" id="facilities-heading">What facilities face</h2>
+      <p class="section-sub">The hidden operational costs of outdated communications infrastructure — by the numbers.</p>
+
+      <div class="facilities-grid" role="list">
+
+        <div class="stat-card" role="listitem">
+          <div class="stat-card-num">$437M</div>
+          <div class="stat-card-label">NY corrections overtime (2024)</div>
+          <div class="stat-card-sub">Manual message review baked into staffing hours, on top of severe shortfalls.</div>
+        </div>
+
+        <div class="stat-card" role="listitem">
+          <div class="stat-card-num">$205M</div>
+          <div class="stat-card-label">Maryland overtime (2024)</div>
+          <div class="stat-card-sub">Review and moderation labor driving costs well beyond baseline staffing budgets.</div>
+        </div>
+
+        <div class="stat-card" role="listitem">
+          <div class="stat-card-num">4–6 hrs</div>
+          <div class="stat-card-label">Daily mailroom labor per facility</div>
+          <div class="stat-card-sub">CA OIG data. Manual sorting, screening, and logging that automation can eliminate.</div>
+        </div>
+
+        <div class="stat-card" role="listitem">
+          <div class="stat-card-num">66%</div>
+          <div class="stat-card-label">U.S. recidivism rate</div>
+          <div class="stat-card-sub">Rearrested within 3 years — costing $8B annually in reincarceration nationwide.</div>
+        </div>
+
+        <div class="stat-card" role="listitem">
+          <div class="stat-card-num">+21.6%</div>
+          <div class="stat-card-label">Rise in violent incidents (PA, 2024)</div>
+          <div class="stat-card-sub">Rate climbed from 12.5 to 16.1 per 1,000. 10–15% had detectable language patterns prior.</div>
+        </div>
+
+        <div class="stat-card" role="listitem">
+          <div class="stat-card-num">$70K–$500K</div>
+          <div class="stat-card-label">Preventable incident costs per facility/yr</div>
+          <div class="stat-card-sub">Each avoided incident saves $10K–$50K. Proactive monitoring shifts settlements to dismissed cases.</div>
+        </div>
+
+        <div class="stat-card" role="listitem">
+          <div class="stat-card-num">$57M+</div>
+          <div class="stat-card-label">Alabama legal costs since 2020</div>
+          <div class="stat-card-sub">$17M in settlements, $39M fighting DOJ and class-action suits from facility violence.</div>
+        </div>
+
+        <div class="stat-card" role="listitem">
+          <div class="stat-card-num">$8B/yr</div>
+          <div class="stat-card-label">National reincarceration costs</div>
+          <div class="stat-card-sub">States with free or subsidized communications show measurable reductions in return rates.</div>
+        </div>
+
+      </div>
+
+      <div class="behavioral-callout" role="note">
+        <p>"Communications as behavioral management assets"</p>
+        <cite>The reframe that changes how facilities measure the ROI of every message sent or received.</cite>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── HOW IT WORKS ──────────────────────────────── -->
   <!-- <section id="how-it-works" aria-labelledby="how-heading">
     <div class="container">
@@ -1230,10 +1381,11 @@
     </div>
   </section> -->
 
-  <!-- ─── RESEARCH ────────────────────────────────────── -->
-  <section class="research-section" id="research" aria-labelledby="research-heading">
+  <!-- ─── FOR FAMILIES ──────────────────────────────── -->
+  <section class="research-section" id="for-families" aria-labelledby="research-heading">
     <div class="container">
-      <h2 class="section-title" id="research-heading">What people need</h2>
+      <p class="section-label" aria-hidden="true">For Families</p>
+      <h2 class="section-title" id="research-heading">What families need</h2>
 
       <div class="research-card" role="region" aria-label="Petition response data">
         <div class="bar-row">
