@@ -1,0 +1,168 @@
+---
+interface Screen {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  screens: Screen[];
+  label?: string;
+}
+
+const { screens, label = 'Messaging screenshots' } = Astro.props;
+---
+
+<div class="phone-showcase" role="region" aria-label={label}>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      {screens.map((screen, i) => (
+        <img
+          src={`/${screen.src}`}
+          class={`phone-slide${i === 0 ? ' active' : ''}`}
+          alt={screen.alt}
+        />
+      ))}
+    </div>
+  </div>
+  <div class="phone-dots" role="tablist" aria-label="Screenshot navigation">
+    {screens.map((_, i) => (
+      <button
+        class={`phone-dot${i === 0 ? ' active' : ''}`}
+        role="tab"
+        aria-selected={i === 0 ? 'true' : 'false'}
+        aria-label={`Screen ${i + 1}`}
+      />
+    ))}
+  </div>
+</div>
+
+<style>
+  .phone-showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .phone-frame {
+    width: 248px;
+    background: #14100A;
+    border-radius: 48px;
+    padding: 13px 11px 11px;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.07),
+      0 0 0 9px #0C0804,
+      0 0 0 10px rgba(255, 255, 255, 0.05),
+      0 40px 80px rgba(0, 0, 0, 0.28),
+      0 8px 20px rgba(0, 0, 0, 0.18);
+    position: relative;
+  }
+
+  /* Dynamic island pill */
+  .phone-frame::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 88px;
+    height: 26px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 2;
+  }
+
+  .phone-screen {
+    border-radius: 37px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    aspect-ratio: 390 / 844;
+  }
+
+  .phone-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0;
+    transition: opacity 500ms ease;
+    display: block;
+  }
+
+  :global(.phone-slide.active) {
+    opacity: 1;
+  }
+
+  .phone-dots {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+  }
+
+  .phone-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    background: var(--border-mid);
+    cursor: pointer;
+    padding: 0;
+    transition: background var(--ease), transform var(--ease), width var(--ease);
+    flex-shrink: 0;
+  }
+
+  :global(.phone-dot.active) {
+    background: var(--brand);
+    width: 20px;
+    border-radius: 4px;
+  }
+</style>
+
+<script>
+  (function () {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll('.phone-showcase').forEach(function (showcase) {
+      const slides = showcase.querySelectorAll('.phone-slide');
+      const dots = showcase.querySelectorAll('.phone-dot');
+      let current = 0;
+      let timer = null;
+
+      function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        dots[current].setAttribute('aria-selected', 'false');
+        current = index;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        dots[current].setAttribute('aria-selected', 'true');
+      }
+
+      function advance() {
+        goTo((current + 1) % slides.length);
+      }
+
+      if (!reducedMotion) {
+        timer = setInterval(advance, 3200);
+      }
+
+      dots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () {
+          clearInterval(timer);
+          goTo(i);
+          if (!reducedMotion) {
+            timer = setInterval(advance, 3200);
+          }
+        });
+      });
+
+      showcase.addEventListener('mouseenter', function () { clearInterval(timer); });
+      showcase.addEventListener('mouseleave', function () {
+        if (!reducedMotion) timer = setInterval(advance, 3200);
+      });
+    });
+  })();
+</script>

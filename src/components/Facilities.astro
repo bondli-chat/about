@@ -1,0 +1,147 @@
+---
+const stats = [
+  {
+    number: '$437M',
+    label: 'NY corrections overtime (2024)',
+    description: 'Manual message review baked into staffing hours, on top of severe shortfalls.',
+  },
+  {
+    number: '$205M',
+    label: 'Maryland overtime (2024)',
+    description: 'Review and moderation labor driving costs well beyond baseline staffing budgets.',
+  },
+  {
+    number: '4–6 hrs',
+    label: 'Daily mailroom labor per facility',
+    description: 'CA OIG data. Manual sorting, screening, and logging that automation can eliminate.',
+  },
+  {
+    number: '66%',
+    label: 'U.S. recidivism rate',
+    description: 'Rearrested within 3 years — costing $8B annually in reincarceration nationwide.',
+  },
+  {
+    number: '+21.6%',
+    label: 'Rise in violent incidents (PA, 2024)',
+    description: 'Rate climbed from 12.5 to 16.1 per 1,000. 10–15% had detectable language patterns prior.',
+  },
+  {
+    number: '$70K–$500K',
+    label: 'Preventable incident costs per facility/yr',
+    description: 'Each avoided incident saves $10K–$50K. Proactive monitoring shifts settlements to dismissed cases.',
+  },
+  {
+    number: '$57M+',
+    label: 'Alabama legal costs since 2020',
+    description: '$17M in settlements, $39M fighting DOJ and class-action suits from facility violence.',
+  },
+  {
+    number: '$8B/yr',
+    label: 'National reincarceration costs',
+    description: 'States with free or subsidized communications show measurable reductions in return rates.',
+  },
+];
+---
+
+<section class="facilities-section" id="for-facilities" aria-labelledby="facilities-heading">
+  <div class="container">
+    <p class="section-label" aria-hidden="true">For Facilities</p>
+    <h2 class="section-title" id="facilities-heading">What facilities face</h2>
+    <p class="section-sub">The hidden operational costs of outdated communications infrastructure — by the numbers.</p>
+
+    <div class="facilities-grid" role="list">
+      {stats.map((stat) => (
+        <div class="stat-card" role="listitem">
+          <div class="stat-card-num">{stat.number}</div>
+          <div class="stat-card-label">{stat.label}</div>
+          <div class="stat-card-sub">{stat.description}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="behavioral-callout" role="note">
+      <p>"Communications as behavioral management assets"</p>
+      <cite>The reframe that changes how facilities measure the ROI of every message sent or received.</cite>
+    </div>
+  </div>
+</section>
+
+<style>
+  .facilities-section {
+    background: var(--bg-warm);
+  }
+
+  .facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 52px;
+  }
+
+  .stat-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+  }
+
+  .stat-card-num {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    color: var(--brand-dark);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .stat-card-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .stat-card-sub {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  .behavioral-callout {
+    border-left: 4px solid var(--brand);
+    background: var(--brand-light);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 28px 36px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .behavioral-callout p {
+    font-size: clamp(17px, 2.2vw, 22px);
+    font-weight: 700;
+    color: var(--brand-deeper);
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+  }
+
+  .behavioral-callout cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    font-style: normal;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .facilities-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .facilities-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
