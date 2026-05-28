@@ -1,0 +1,363 @@
+---
+const bars = [
+  {
+    label: 'Lower costs',
+    pct: 95,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+  },
+  {
+    label: 'Better reliability',
+    pct: 88,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.42 9a16 16 0 0 1 21.16 0M5 12.55a11 11 0 0 1 14.08 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>`,
+  },
+  {
+    label: 'Better privacy & moderation',
+    pct: 61,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    label: 'Centralized system',
+    pct: 49,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="12" x2="5" y2="16"/><line x1="12" y1="12" x2="19" y2="16"/></svg>`,
+  },
+  {
+    label: 'Fast background checks',
+    pct: 39,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  },
+];
+---
+
+<section class="research-section" id="for-families" aria-labelledby="research-heading">
+  <div class="container">
+    <p class="section-label" aria-hidden="true">For Families</p>
+    <h2 class="section-title" id="research-heading">What families need</h2>
+
+    <div class="research-card" role="region" aria-label="Petition response data">
+      {bars.map((bar, i) => (
+        <div class="bar-row">
+          <span class="bar-label">
+            <Fragment set:html={bar.icon} />
+            {bar.label}
+          </span>
+          <span class="bar-pct">{bar.pct}%</span>
+          <div
+            class="bar-track"
+            role="meter"
+            aria-valuenow={bar.pct}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={`${bar.label}: ${bar.pct}%`}
+          >
+            <div class="bar-fill" style={`--pct: ${bar.pct}%`}></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Reddit carousel — full-bleed amber band -->
+  <div class="reddit-carousel-wrap" aria-label="Real voices from the community">
+    <p class="reddit-carousel-label">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z" />
+      </svg>
+      Real voices from the community
+    </p>
+    <div class="reddit-track row-1" id="reddit-row-1"></div>
+    <div class="reddit-track row-2" id="reddit-row-2"></div>
+  </div>
+</section>
+
+<!--
+  Reddit embeds — add new blockquotes here.
+  First half → row 1 (scrolls left), second half → row 2 (scrolls right)
+-->
+<template id="reddit-source">
+  <blockquote class="reddit-embed-bq" style="height:316px" data-embed-height="316">
+    <a href="https://www.reddit.com/r/PrisonTalk/comments/1rvb6y9/gtl_getting_out/">GTL getting out</a><br /> by
+    <a href="https://www.reddit.com/user/UniversitySecret4477/">u/UniversitySecret4477</a> in
+    <a href="https://www.reddit.com/r/PrisonTalk/">PrisonTalk</a>
+  </blockquote>
+  <blockquote class="reddit-embed-bq" style="height:316px" data-embed-theme="dark" data-embed-showusername="false" data-embed-height="316">
+    <a href="https://www.reddit.com/r/PrisonWives/comments/1sf3z3q/how_long_does_it_take_for_my_message_to_send/">How long does it take for my message to send?</a><br /> by
+    <a href="https://www.reddit.com/user/blatina_bbxo/">u/blatina_bbxo</a> in
+    <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+  </blockquote>
+  <blockquote class="reddit-embed-bq" style="height:316px" data-embed-theme="dark" data-embed-showusername="false" data-embed-height="316">
+    <a href="https://www.reddit.com/r/PrisonWives/comments/1s4iia4/is_securus_getting_worse_for_everyone_else/">Is Securus getting worse for everyone else? (Multiple rejection/Delays)</a><br /> by
+    <a href="https://www.reddit.com/user/Think-Grass-3886/">u/Think-Grass-3886</a> in
+    <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+  </blockquote>
+  <blockquote class="reddit-embed-bq" style="height:316px" data-embed-theme="dark" data-embed-showusername="false" data-embed-height="316">
+    <a href="https://www.reddit.com/r/PrisonWives/comments/1sarr13/please_please_help/">Please please help</a><br /> by
+    <a href="https://www.reddit.com/user/Distinct-Bluejay3113/">u/Distinct-Bluejay3113</a> in
+    <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+  </blockquote>
+  <blockquote class="reddit-embed-bq" style="height:316px" data-embed-theme="dark" data-embed-showusername="false" data-embed-height="316">
+    <a href="https://www.reddit.com/r/PrisonWives/comments/1saqrc1/is_gtl_still_working_today_at_satf/">Is GTL still working today at SATF</a><br /> by
+    <a href="https://www.reddit.com/user/Standard-Cost-6197/">u/Standard-Cost-6197</a> in
+    <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+  </blockquote>
+  <blockquote class="reddit-embed-bq" style="height:316px" data-embed-height="316">
+    <a href="https://www.reddit.com/r/PrisonWives/comments/1sbap88/gtl_message_approval_times_during_holidays/">GTL message approval times during holidays</a><br /> by
+    <a href="https://www.reddit.com/user/Accomplished-Let8054/">u/Accomplished-Let8054</a> in
+    <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+  </blockquote>
+  <blockquote class="reddit-embed-bq" style="height:316px" data-embed-height="316">
+    <a href="https://www.reddit.com/r/PrisonWives/comments/1s9xpmc/is_anyone_else_having_issues_with_getting_out/">Is anyone else having issues with Getting Out?</a><br /> by
+    <a href="https://www.reddit.com/user/New-Acanthisitta4999/">u/New-Acanthisitta4999</a> in
+    <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+  </blockquote>
+  <blockquote class="reddit-embed-bq" style="height:316px" data-embed-height="316">
+    <a href="https://www.reddit.com/r/PrisonWives/comments/1s4mr3h/cant_access_my_account/">Can't access my account?</a><br /> by
+    <a href="https://www.reddit.com/user/No_Thought_4211/">u/No_Thought_4211</a> in
+    <a href="https://www.reddit.com/r/PrisonWives/">PrisonWives</a>
+  </blockquote>
+</template>
+
+<style>
+  .research-section {
+    background: var(--bg);
+  }
+
+  .research-card {
+    max-width: 660px;
+    margin: 0 auto;
+    background: var(--bg-warm);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px 40px;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: 12px;
+    row-gap: 7px;
+    margin-bottom: 20px;
+  }
+
+  .bar-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .bar-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    align-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .bar-label :global(svg) {
+    width: 14px;
+    height: 14px;
+    color: var(--brand);
+    flex-shrink: 0;
+  }
+
+  .bar-pct {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--brand-dark);
+    align-self: end;
+    text-align: right;
+  }
+
+  .bar-track {
+    grid-column: 1 / -1;
+    height: 8px;
+    background: var(--border);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    width: 0;
+    background: var(--brand);
+    border-radius: inherit;
+    transition: width 900ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  :global(.research-card.is-visible) .bar-fill {
+    width: var(--pct);
+  }
+
+  .bar-row:nth-child(1) .bar-fill { transition-delay: 0ms; }
+  .bar-row:nth-child(2) .bar-fill { transition-delay: 100ms; }
+  .bar-row:nth-child(3) .bar-fill { transition-delay: 200ms; }
+  .bar-row:nth-child(4) .bar-fill { transition-delay: 300ms; }
+  .bar-row:nth-child(5) .bar-fill { transition-delay: 400ms; }
+
+  /* Reddit carousel */
+  .reddit-carousel-wrap {
+    margin-top: 48px;
+    padding: 40px 0 44px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right,
+        transparent 0%,
+        #000 72px,
+        #000 calc(100% - 72px),
+        transparent 100%);
+    mask-image: linear-gradient(to right,
+        transparent 0%,
+        #000 72px,
+        #000 calc(100% - 72px),
+        transparent 100%);
+  }
+
+  .reddit-carousel-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 24px;
+    padding: 0 80px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .reddit-carousel-label :global(svg) {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    color: var(--brand);
+  }
+
+  .reddit-track {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
+
+  .reddit-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reddit-track.row-2 {
+    margin-top: 14px;
+  }
+
+  :global(.reddit-card) {
+    flex: 0 0 340px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+    min-height: 316px;
+  }
+
+  @media (max-width: 900px) {
+    .research-card {
+      padding: 28px 24px;
+    }
+  }
+</style>
+
+<script>
+  // Research bars: fill on scroll into view
+  (function () {
+    var card = document.querySelector('.research-card');
+    if (!card) return;
+    var observer = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        card.classList.add('is-visible');
+        observer.disconnect();
+      }
+    }, { threshold: 0.3 });
+    observer.observe(card);
+  })();
+</script>
+
+<script>
+  // Reddit carousel
+  (function () {
+    var row1 = document.getElementById('reddit-row-1');
+    var row2 = document.getElementById('reddit-row-2');
+    if (!row1 || !row2) return;
+
+    var tmpl = document.getElementById('reddit-source');
+    if (!tmpl) return;
+    var blockquotes = Array.from(tmpl.content.querySelectorAll('blockquote.reddit-embed-bq'));
+    if (!blockquotes.length) return;
+
+    var mid = Math.ceil(blockquotes.length / 2);
+    var groups = [blockquotes.slice(0, mid), blockquotes.slice(mid)];
+    var tracks = [row1, row2];
+
+    var CARD_W = 354;
+
+    groups.forEach(function (list, i) {
+      if (!list.length) return;
+      var reps = Math.max(2, Math.ceil((window.innerWidth * 1.5) / (list.length * CARD_W)));
+      var repeated = [];
+      for (var r = 0; r < reps * 2; r++) repeated = repeated.concat(list);
+
+      repeated.forEach(function (bq) {
+        var div = document.createElement('div');
+        div.className = 'reddit-card';
+        div.appendChild(bq.cloneNode(true));
+        tracks[i].appendChild(div);
+      });
+    });
+
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://embed.reddit.com/widgets.js';
+    s.charset = 'UTF-8';
+    document.body.appendChild(s);
+
+    var SPEED = 0.6;
+
+    function startScroll(el, direction) {
+      var paused = false;
+      var userScrolling = false;
+      var resumeTimer;
+
+      function resumeAfterDelay() {
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(function () { userScrolling = false; }, 1500);
+      }
+
+      el.addEventListener('mouseenter', function () { paused = true; });
+      el.addEventListener('mouseleave', function () { paused = false; });
+      el.addEventListener('wheel', function () { userScrolling = true; resumeAfterDelay(); }, { passive: true });
+      el.addEventListener('touchstart', function () { userScrolling = true; }, { passive: true });
+      el.addEventListener('touchend', resumeAfterDelay);
+
+      requestAnimationFrame(function () {
+        var half = el.scrollWidth / 2;
+        if (direction === 'right') el.scrollLeft = half;
+
+        function tick() {
+          if (!paused && !userScrolling) {
+            var h = el.scrollWidth / 2;
+            if (direction === 'left') {
+              el.scrollLeft += SPEED;
+              if (el.scrollLeft >= h) el.scrollLeft -= h;
+            } else {
+              el.scrollLeft -= SPEED;
+              if (el.scrollLeft <= 0) el.scrollLeft += h;
+            }
+          }
+          requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+      });
+    }
+
+    startScroll(row1, 'left');
+    startScroll(row2, 'right');
+  })();
+</script>
